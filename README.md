@@ -22,7 +22,7 @@ train = pd.read_csv('%s/%s' % (root_path, 'train.csv'))
 test = pd.read_csv('%s/%s' % (root_path, 'test.csv'))
 ```
 
-### 特征说明
+### 特征说明 Feature Description
 
 
 ```python
@@ -145,7 +145,7 @@ train.info()
     memory usage: 924.0+ KB
 
 
-### 特征详情
+### 特征详情 Feature Details
 
 
 ```python
@@ -311,7 +311,7 @@ train.head(5)
 
 
 
-### 特征分析
+### 特征分析 Feature Analysis
 
 每一行是一条房子出售的记录，原始特征有80列，具体的意思可以根据data_description来查询，我们要预测的是房子的售价，即“SalePrice”。训练集有1459条记录，测试集有1460条记录，数据量还是很小的。
 
