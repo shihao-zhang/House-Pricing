@@ -51,9 +51,7 @@ train.columns
            'SaleCondition', 'SalePrice'],
           dtype='object')
 
-
-![](Feature_description.jpg)
-
+<img src="Feature_description.jpg" width="750">
 
 ```python
 train.info()
