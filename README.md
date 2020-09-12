@@ -1246,3 +1246,81 @@ train_corr
 </table>
 <p>37 rows × 37 columns</p>
 </div>
+
+
+
+> Feature Correlation Analysis 所有特征相关度分析
+
+
+```python
+# 画出相关性热力图
+a = plt.subplots(figsize=(20, 12))#调整画布大小
+a = sns.heatmap(train_corr, vmax=.8, square=True)#画热力图   annot=True 显示系数
+```
+
+
+![png](output_14_0.png)
+
+
+> SalePrice 相关度特征排序
+
+
+```python
+# 寻找K个最相关的特征信息
+k = 10 # number of variables for heatmap
+cols = train_corr.nlargest(k, 'SalePrice')['SalePrice'].index
+cm = np.corrcoef(train[cols].values.T)
+sns.set(font_scale=1.5)
+hm = plt.subplots(figsize=(20, 12))#调整画布大小
+hm = sns.heatmap(cm, cbar=True, annot=True, square=True, fmt='.2f', annot_kws={'size': 10}, yticklabels=cols.values, xticklabels=cols.values)
+plt.show()
+
+'''
+1. GarageCars 和 GarageAre 相关性很高、就像双胞胎一样，所以我们只需要其中的一个变量，例如：GarageCars。
+2. TotalBsmtSF  和 1stFloor 与上述情况相同，我们选择 TotalBsmtS
+3. GarageAre 和 TotRmsAbvGrd 与上述情况相同，我们选择 GarageAre
+''' 
+```
+
+
+![png](output_16_0.png)
+
+
+
+
+
+    '\n1. GarageCars 和 GarageAre 相关性很高、就像双胞胎一样，所以我们只需要其中的一个变量，例如：GarageCars。\n2. TotalBsmtSF  和 1stFloor 与上述情况相同，我们选择 TotalBsmtS\n3. GarageAre 和 TotRmsAbvGrd 与上述情况相同，我们选择 GarageAre\n'
+
+
+
+> SalePrice 和相关变量之间的散点图
+
+
+```python
+sns.set()
+cols = ['SalePrice', 'OverallQual', 'GrLivArea','GarageCars', 'TotalBsmtSF', 'FullBath', 'YearBuilt']
+sns.pairplot(train[cols], size = 2.5)
+plt.show();
+```
+
+
+![png](output_18_0.png)
+
+
+
+```python
+train[['SalePrice', 'OverallQual', 'GrLivArea','GarageCars', 'TotalBsmtSF', 'FullBath', 'YearBuilt']].info()
+```
+
+    <class 'pandas.core.frame.DataFrame'>
+    RangeIndex: 1460 entries, 0 to 1459
+    Data columns (total 7 columns):
+    SalePrice      1460 non-null int64
+    OverallQual    1460 non-null int64
+    GrLivArea      1460 non-null int64
+    GarageCars     1460 non-null int64
+    TotalBsmtSF    1460 non-null int64
+    FullBath       1460 non-null int64
+    YearBuilt      1460 non-null int64
+    dtypes: int64(7)
+    memory usage: 79.9 KB
