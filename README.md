@@ -3,7 +3,6 @@ https://www.kaggle.com/c/house-prices-advanced-regression-techniques/overview
 
 
 ```python
-# 导入相关数据包
 import numpy as np
 import pandas as pd
 import seaborn as sns
